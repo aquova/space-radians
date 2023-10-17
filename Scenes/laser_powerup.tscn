@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkxrysu1syrlq"]
+
+[ext_resource type="PackedScene" uid="uid://c16g1grrd3txc" path="res://Scenes/powerup.tscn" id="1_7xgsk"]
+[ext_resource type="Texture2D" uid="uid://b8t67jwxeh14k" path="res://Assets/laser_pu.png" id="2_ho8rl"]
+
+[node name="LaserPowerup" instance=ExtResource("1_7xgsk")]
+type = 2
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ho8rl")

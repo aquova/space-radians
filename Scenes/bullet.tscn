@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadwk8nlpstpc"]
+
+[ext_resource type="Texture2D" uid="uid://dvrfdbpnw4amm" path="res://Assets/bullet.png" id="1_dxs12"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_rqh5f"]
+[ext_resource type="AudioStream" uid="uid://cmppiep56y8cu" path="res://Assets/bullet.wav" id="3_enqbd"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8inxt"]
+a = Vector2(0, -2)
+b = Vector2(0, 2)
+
+[node name="Bullet" type="Area2D"]
+show_behind_parent = true
+collision_mask = 4
+script = ExtResource("1_rqh5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dxs12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_8inxt")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_enqbd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

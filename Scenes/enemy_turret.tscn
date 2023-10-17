@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc3y8qvjgm1kh"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_turret.gd" id="1_4dy5s"]
+[ext_resource type="Texture2D" uid="uid://7orxjtw0gyvp" path="res://Assets/enemy_turret.png" id="1_f7g6h"]
+[ext_resource type="PackedScene" uid="uid://82sqqxi6hmoc" path="res://Scenes/explosion_particles.tscn" id="2_wj67y"]
+[ext_resource type="PackedScene" uid="uid://cq50otundblt5" path="res://Scenes/player_detection_area.tscn" id="3_nf5ok"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0sarj"]
+radius = 6.0
+
+[node name="EnemyTurret" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_4dy5s")
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("2_wj67y")]
+
+[node name="PointsLabel" parent="ExplosionParticles" index="2"]
+points = 100
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_f7g6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0sarj")
+
+[node name="PlayerDetectionArea" parent="." instance=ExtResource("3_nf5ok")]
+
+[connection signal="effect_finished" from="ExplosionParticles" to="." method="_on_explosion_particles_effect_finished"]
+[connection signal="player_lost" from="PlayerDetectionArea" to="." method="_on_player_detection_area_player_lost"]
+[connection signal="player_seen" from="PlayerDetectionArea" to="." method="_on_player_detection_area_player_seen"]
+
+[editable path="ExplosionParticles"]
+[editable path="PlayerDetectionArea"]

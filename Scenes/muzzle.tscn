@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vdi0wlsm32lf"]
+
+[ext_resource type="Script" path="res://Scripts/muzzle.gd" id="1_etea6"]
+
+[node name="Muzzle" type="Marker2D"]
+script = ExtResource("1_etea6")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cunxvym4k65e1"]
+
+[ext_resource type="Texture2D" uid="uid://b3aqetqnl17xq" path="res://Assets/stars-far.png" id="1_0wcpu"]
+[ext_resource type="Texture2D" uid="uid://cs345lwfdwl4f" path="res://Assets/stars-far2.png" id="2_smoj1"]
+[ext_resource type="Texture2D" uid="uid://4coyuar4w8jw" path="res://Assets/stars-mid.png" id="2_ye6h0"]
+[ext_resource type="Texture2D" uid="uid://epxmhfkvqyas" path="res://Assets/stars-close.png" id="3_rpnem"]
+[ext_resource type="Texture2D" uid="uid://cko11yij6bcgi" path="res://Assets/stars-mid2.png" id="4_43yh4"]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="Far" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Far"]
+texture = ExtResource("1_0wcpu")
+centered = false
+
+[node name="Far2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.35, 0.35)
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Far2"]
+texture = ExtResource("2_smoj1")
+centered = false
+
+[node name="Mid" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid"]
+texture = ExtResource("2_ye6h0")
+centered = false
+
+[node name="Mid2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid2"]
+texture = ExtResource("4_43yh4")
+centered = false
+
+[node name="Close" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Close"]
+texture = ExtResource("3_rpnem")
+centered = false

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://82sqqxi6hmoc"]
+
+[ext_resource type="Script" path="res://Scripts/explosion_particles.gd" id="1_6totc"]
+[ext_resource type="AudioStream" uid="uid://gipk6dcntni3" path="res://Assets/explode.wav" id="2_ff1y1"]
+[ext_resource type="Script" path="res://Scripts/FloatingPoints.gd" id="3_ks0w3"]
+
+[sub_resource type="Gradient" id="Gradient_wig2q"]
+offsets = PackedFloat32Array(0, 0.0647482, 0.895683, 1)
+colors = PackedColorArray(0.945098, 0.854902, 0, 0, 0.945098, 0.854902, 0, 1, 0.927618, 0.316027, 0, 1, 0.929412, 0.317647, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ifyu5"]
+gradient = SubResource("Gradient_wig2q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkina"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.945098, 0.854902, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ifyu5")
+
+[node name="ExplosionParticles" type="GPUParticles2D"]
+emitting = false
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_xkina")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_6totc")
+
+[node name="FinishedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ff1y1")
+volume_db = -10.0
+
+[node name="PointsLabel" type="Label" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 35.0
+offset_bottom = 20.0
+scale = Vector2(0.25, 0.25)
+horizontal_alignment = 1
+script = ExtResource("3_ks0w3")
+
+[connection signal="timeout" from="FinishedTimer" to="." method="_on_finished_timer_timeout"]

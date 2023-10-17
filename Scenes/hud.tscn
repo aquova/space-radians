@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciqfxwkaer6fr"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_jfisk"]
+[ext_resource type="PackedScene" uid="uid://bu2trafbtpqhn" path="res://Scenes/radar.tscn" id="2_djckw"]
+[ext_resource type="Shader" path="res://Shaders/gameover.gdshader" id="3_o6tb3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1nu7"]
+shader = ExtResource("3_o6tb3")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_jfisk")
+
+[node name="EnemyCountLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -47.0
+offset_right = 46.0
+offset_bottom = 26.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+horizontal_alignment = 2
+
+[node name="PauseLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -13.0
+offset_right = 31.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="LifeIcons" type="HBoxContainer" parent="."]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PointLabel" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 167.0
+offset_right = 56.0
+offset_bottom = 193.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Radar" parent="." instance=ExtResource("2_djckw")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GameoverLabel" type="Label" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_a1nu7")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -13.0
+offset_right = 46.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+horizontal_alignment = 1

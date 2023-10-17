@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3jgu6sdcrr8y"]
+
+[ext_resource type="Texture2D" uid="uid://yycfkvoko8km" path="res://Assets/radar-tick2.png" id="1_rvqia"]
+
+[node name="RadarTick" type="TextureRect"]
+offset_right = 1.0
+offset_bottom = 1.0
+texture = ExtResource("1_rvqia")
+stretch_mode = 2

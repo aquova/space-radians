@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlhh3c8rii6fe"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_kevci"]
+[ext_resource type="Texture2D" uid="uid://tlkalexcm7o4" path="res://Assets/ship.png" id="1_yvxha"]
+[ext_resource type="PackedScene" uid="uid://dqrmju36mh854" path="res://Scenes/engine_particles.tscn" id="2_p2su6"]
+[ext_resource type="PackedScene" uid="uid://82sqqxi6hmoc" path="res://Scenes/explosion_particles.tscn" id="3_cfykq"]
+[ext_resource type="Material" uid="uid://chitw6kx864ko" path="res://Materials/shield.tres" id="4_oddeq"]
+[ext_resource type="PackedScene" uid="uid://vdi0wlsm32lf" path="res://Scenes/muzzle.tscn" id="6_f0xpi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsfjx"]
+radius = 6.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_kevci")
+
+[node name="EngineParticles" parent="." instance=ExtResource("2_p2su6")]
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("3_cfykq")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("4_oddeq")
+texture = ExtResource("1_yvxha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qsfjx")
+
+[node name="Muzzles" type="Node2D" parent="."]
+
+[node name="SingleMuzzle" parent="Muzzles" instance=ExtResource("6_f0xpi")]
+position = Vector2(0, -5)
+
+[node name="DualMuzzleA" parent="Muzzles" instance=ExtResource("6_f0xpi")]
+position = Vector2(-6, -5)
+
+[node name="DualMuzzleB" parent="Muzzles" instance=ExtResource("6_f0xpi")]
+position = Vector2(6, -5)
+
+[connection signal="effect_finished" from="ExplosionParticles" to="." method="_on_explosion_particles_effect_finished"]

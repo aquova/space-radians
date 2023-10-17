@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqrmju36mh854"]
+
+[sub_resource type="Gradient" id="Gradient_fpkvw"]
+offsets = PackedFloat32Array(0, 0.0658436, 0.938272, 1)
+colors = PackedColorArray(1, 0.776471, 0.258824, 0, 0.963481, 0.960648, 0.965384, 1, 0.0123164, 0.371878, 0.605929, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_182rb"]
+gradient = SubResource("Gradient_fpkvw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hg1pk"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_182rb")
+
+[node name="EngineParticles" type="GPUParticles2D"]
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_hg1pk")
+lifetime = 0.1

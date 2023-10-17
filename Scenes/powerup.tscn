@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c16g1grrd3txc"]
+
+[ext_resource type="Script" path="res://Scripts/powerup.gd" id="1_bdlpa"]
+[ext_resource type="AudioStream" uid="uid://c3x0dxrwxg5pn" path="res://Assets/powerup.wav" id="2_h2lsg"]
+[ext_resource type="Script" path="res://Scripts/FloatingPoints.gd" id="3_uafha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yp7td"]
+radius = 5.0
+
+[node name="Powerup" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_bdlpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yp7td")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VanishTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_h2lsg")
+
+[node name="PointsLabel" type="Label" parent="."]
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 35.0
+offset_bottom = 20.0
+scale = Vector2(0.25, 0.25)
+horizontal_alignment = 1
+script = ExtResource("3_uafha")
+points = 50
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="VanishTimer" to="." method="_on_vanish_timer_timeout"]
+[connection signal="finished" from="SFX" to="." method="_on_sfx_finished"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkfby7romadal"]
+
+[ext_resource type="PackedScene" uid="uid://c16g1grrd3txc" path="res://Scenes/powerup.tscn" id="1_i8gyp"]
+[ext_resource type="Texture2D" uid="uid://3bjahycyvm3q" path="res://Assets/shield_pu.png" id="2_f11lo"]
+
+[node name="ShieldPowerup" instance=ExtResource("1_i8gyp")]
+type = 1
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_f11lo")

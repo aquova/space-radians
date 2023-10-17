@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs646fvjj7d2e"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_ship.gd" id="1_581hp"]
+[ext_resource type="Texture2D" uid="uid://clmet0oi5hxct" path="res://Assets/enemy_ship.png" id="1_t71ak"]
+[ext_resource type="PackedScene" uid="uid://dqrmju36mh854" path="res://Scenes/engine_particles.tscn" id="2_o6kjm"]
+[ext_resource type="PackedScene" uid="uid://cq50otundblt5" path="res://Scenes/player_detection_area.tscn" id="2_w2dw8"]
+[ext_resource type="PackedScene" uid="uid://82sqqxi6hmoc" path="res://Scenes/explosion_particles.tscn" id="5_0krl6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ggcy1"]
+radius = 6.0
+
+[node name="EnemyShip" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_581hp")
+
+[node name="EngineParticles" parent="." instance=ExtResource("2_o6kjm")]
+
+[node name="PlayerDetectionArea" parent="." instance=ExtResource("2_w2dw8")]
+
+[node name="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
+debug_color = Color(0, 0.643137, 0.341176, 0.164706)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t71ak")
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("5_0krl6")]
+
+[node name="PointsLabel" parent="ExplosionParticles" index="2"]
+points = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ggcy1")
+
+[node name="RotateTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="player_lost" from="PlayerDetectionArea" to="." method="_on_player_detection_area_player_lost"]
+[connection signal="player_seen" from="PlayerDetectionArea" to="." method="_on_player_detection_area_player_seen"]
+[connection signal="effect_finished" from="ExplosionParticles" to="." method="_on_explosion_particles_effect_finished"]
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
+
+[editable path="PlayerDetectionArea"]
+[editable path="ExplosionParticles"]

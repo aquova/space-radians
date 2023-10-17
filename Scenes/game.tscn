@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://db1i5mfo3ptlm"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_j0qso"]
+[ext_resource type="PackedScene" uid="uid://cunxvym4k65e1" path="res://Scenes/background.tscn" id="1_r1yos"]
+[ext_resource type="PackedScene" uid="uid://dlhh3c8rii6fe" path="res://Scenes/player.tscn" id="1_xauij"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="4_0wbk8"]
+[ext_resource type="PackedScene" uid="uid://ciqfxwkaer6fr" path="res://Scenes/hud.tscn" id="4_b7hvw"]
+[ext_resource type="PackedScene" uid="uid://02a8os0ufwr4" path="res://Scenes/level_title.tscn" id="4_xhg31"]
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_j0qso")
+
+[node name="Background" parent="." instance=ExtResource("1_r1yos")]
+
+[node name="Enemies" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("1_xauij")]
+process_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+script = ExtResource("4_0wbk8")
+
+[node name="LevelTitle" parent="." instance=ExtResource("4_xhg31")]
+
+[node name="HUD" parent="." instance=ExtResource("4_b7hvw")]
+
+[node name="ReturnTitleTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="extra_life" from="Player" to="." method="_on_player_extra_life"]
+[connection signal="grab_powerup" from="Player" to="." method="_on_player_grab_powerup"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="begin_playing" from="LevelTitle" to="." method="_on_level_title_begin_playing"]
+[connection signal="timeout" from="ReturnTitleTimer" to="." method="_on_return_title_timer_timeout"]

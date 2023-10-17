@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvg0ddaqmwt1i"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_h6s6b"]
+[ext_resource type="PackedScene" uid="uid://cunxvym4k65e1" path="res://Scenes/background.tscn" id="1_qg7kv"]
+[ext_resource type="PackedScene" uid="uid://cs646fvjj7d2e" path="res://Scenes/enemy_ship.tscn" id="2_361m2"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_h6s6b")
+
+[node name="Background" parent="." instance=ExtResource("1_qg7kv")]
+
+[node name="EnemyShip" parent="." instance=ExtResource("2_361m2")]
+
+[node name="Camera2D" type="Camera2D" parent="EnemyShip"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TitleLabel" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -39.0
+offset_right = 61.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SPACE
+
+
+RADIANS"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="HUD"]
+offset_top = 171.0
+offset_right = 914.0
+offset_bottom = 197.0
+scale = Vector2(0.35, 0.35)
+text = "Press X to Fire | Hold Z to Rotate"
+horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 26.0
+scale = Vector2(0.25, 0.25)
+text = "v1.0"
+
+[node name="AuthorLabel" type="Label" parent="HUD"]
+offset_left = 292.0
+offset_right = 400.0
+offset_bottom = 26.0
+scale = Vector2(0.25, 0.25)
+text = "aquova - 2023"
+
+[node name="HighscoreLabel" type="Label" parent="HUD"]
+offset_right = 1067.0
+offset_bottom = 26.0
+scale = Vector2(0.3, 0.3)
+text = "Highscore - XXX"
+horizontal_alignment = 1
